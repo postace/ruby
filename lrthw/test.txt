@@ -1,0 +1,4 @@
+"Just testing file."
+To be or nothing
+Let try out some Ruby-Code
+Ok, let's get started!

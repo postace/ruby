@@ -1,0 +1,6 @@
+puts "Hello World"
+puts "Xin chao cac ban!"
+puts "I do not typing like this one!"
+puts "Yay! Printing out."
+puts "I'd banking yourself!"
+puts "Please do not do anything like this!"
