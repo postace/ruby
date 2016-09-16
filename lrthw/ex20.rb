@@ -23,6 +23,9 @@ print_all(current_file)
 
 puts  "Now let's rewind, kind of like a tape."
 
+# We need to rewind because if we call print_call() twice
+# it will not work as expected
+
 rewind(current_file)
 
 puts "Let's print three lines: "
