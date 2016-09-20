@@ -1,33 +1,21 @@
 # Class in Ruby
 
-class Bird
-  def talk(name)
-    puts "#{name} says Chirp! Chirp!"
-  end
-  def move(name, destination)
-    puts "#{name} flying to the #{destination}."
-  end
-end
+class Animal
 
-class Dog
+  attr_accessor :name, :age
 
-  # Only define the reader methods automatically
-  attr_reader :name, :age
-
-  # Validation @name
-  def name=(new_name)
-    if new_name == ""               # If the name is blank
-      puts "Name can't be blank!"   # Print an error message
-    else
-      @name = new_name      # Set the instance variable only if the name is valid
+  def name=(value)
+    if value == ""
+      raise "Name can't be blank!"
+    end
+    @name = value
   end
 
-  # Validation @age
-  def age=(new_age)
-    if new_age < 0                  # If the age is negative
-      puts "An age of #{new_age} isn't valid"
-    else
-      @age = new_age        # Set the instance variable only if the age is valid
+  def age=(value)
+    if value < 0
+      raise "An age of #{value} isn't valid!"
+    end
+    @age = value
   end
 
   def talk
@@ -35,28 +23,46 @@ class Dog
   end
 
   def move(destination)
-    puts "#{@name} running to the #{destination}."
+    puts "#{@name} runs to the #{destination}."
   end
 
   def report_age
     puts "#{@name} is #{@age} years old."
   end
+
 end
 
-class Cat
-  def talk(name)
-    puts "#{name} says Meow!"
+class Bird < Animal
+
+  def talk
+    puts "#{@name} says Chirp! Chirp!"
   end
-  def move(name, destination)
-    puts "#{name} running to the #{destination}."
+
+end
+
+class Dog < Animal
+
+  def to_s
+    "#{@name} the dog, age #{@age}"
   end
+
+end
+
+class Cat < Animal
+
+  def talk
+    puts "#{@name} says Meow! Meow!"
+  end
+
 end
 
 # Create new object of this class
-dog = Dog.new
-cat = Cat.new
-bird = Bird.new
+lucy = Dog.new
+lucy.name = "Lucy"
+lucy.age = 4
 
-dog.name = "Daisy"
-dog.age = 7
-dog.report_age
+rex = Dog.new
+rex.name = "Rex"
+rex.age = 2
+
+puts lucy, rex
