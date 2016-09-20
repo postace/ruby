@@ -2,7 +2,7 @@
 
 class Employee
 
-  attr_reader :name, :salary
+  attr_reader :name
 
   def name=(name)
     if name == ""
@@ -17,25 +17,10 @@ class Employee
     puts "Name: #{name}"
   end
 
-  def salary=(salary)
-    if salary < 0
-      # Report an error if the salary is negative
-      raise "A salary of #{salary} isn't valid!"
-    end
-    @salary = salary
-  end
-
   # Automatically call when create new object
   def initialize(name = "Anonymous")
     # Call to 'name=' method
     self.name = name
-  end
-
-  def print_pay_stub
-    puts "Name: #{name}"
-    pay_for_period = (salary/365.0)*14
-    formatted_pay = format("%.2f", pay_for_period)
-    puts "Pay This Period: #{formatted_pay}"
   end
 
 end
@@ -68,6 +53,20 @@ end
 
 class HourlyEmployee < Employee
 
+  # Writing some class methods
+  def self.security_guard(name)
+    # predefined hourly_wage and hours_per_week for each employee
+    HourlyEmployee.new(name, 19.25, 30)
+  end
+
+  def self.cashier(name)
+    HourlyEmployee.new(name, 12.75, 25)
+  end
+
+  def self.janitor(name)
+    HourlyEmployee.new(name, 10.50, 20)
+  end
+
   attr_reader :hourly_wage, :hours_per_week
 
   def hourly_wage=(hourly_wage)
@@ -86,24 +85,11 @@ class HourlyEmployee < Employee
     end
   end
 
+  # Call when we call "HourlyEmployee.new"
   def initialize(name = "Anonymous", hourly_wage = 0.0, hours_per_week = 0.0)
     super(name)
     self.hourly_wage = hourly_wage
     self.hours_per_week = hours_per_week
-  end
-
-  # Writing some class methods
-  def self.security_guard(name)
-    # predefined hourly_wage and hours_per_week for each employee
-    HourlyEmployee.new(name, 19.25, 30)
-  end
-
-  def self.cashier(name)
-    HourlyEmployee.new(name, 12.75, 25)
-  end
-
-  def self.janitor(name)
-    HourlyEmployee.new(name, 10.50, 20)
   end
 
   def print_pay_stub
