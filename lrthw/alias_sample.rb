@@ -4,19 +4,18 @@ class CelestialBody
   attr_accessor :type, :name
 end
 
-default_body = CelestialBody.new
-default_body.type = 'planet'
-# Make the planet default for all unassigned hash key
-bodies = Hash.new(default_body)
+# Hash default blocks
+bodies = Hash.new do |hash,key|
+  # Create new object for current key
+  body = CelestialBody.new
+  body.type = "planet"
+  # Assign to the hash and returns the new value
+  hash[key] = body
+end
 
 bodies['Mars'].name = 'Mars'
-p bodies['Mars']
-
 bodies['Europa'].name = 'Europa'
 bodies['Europa'].type = 'moon'
-p bodies['Europa']
-
 bodies['Venus'].name = 'Venus'
-p bodies['Venus']
 
 p bodies
