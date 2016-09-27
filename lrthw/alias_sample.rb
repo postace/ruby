@@ -4,17 +4,19 @@ class CelestialBody
   attr_accessor :type, :name
 end
 
-altair = CelestialBody.new
-altair.name = 'Altair'
-altair.type = 'star'
-# This will copy references, not create any new object
-polaris = altair
-polaris.name = "Polaris"
-vega = polaris
-vega.name = 'Vega'
+default_body = CelestialBody.new
+default_body.type = 'planet'
+# Make the planet default for all unassigned hash key
+bodies = Hash.new(default_body)
 
-puts altair.name, polaris.name, vega.name
+bodies['Mars'].name = 'Mars'
+p bodies['Mars']
 
-puts altair.object_id
-puts polaris.object_id
-puts vega.object_id
+bodies['Europa'].name = 'Europa'
+bodies['Europa'].type = 'moon'
+p bodies['Europa']
+
+bodies['Venus'].name = 'Venus'
+p bodies['Venus']
+
+p bodies
